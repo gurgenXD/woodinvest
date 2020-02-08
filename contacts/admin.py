@@ -1,3 +1,9 @@
 from django.contrib import admin
+from contacts.models import *
 
-# Register your models here.
+
+admin.site.register(Address)
+admin.site.register(Phone)
+admin.site.register(Email)
+admin.site.register(MapCode)
+admin.site.register(Social)

@@ -1,6 +1,7 @@
 from django.urls import path
+from services import views
 
 
 urlpatterns = [
-    path('admin/', view, name=''),
+    path('', views.ServicesView, name='services'),
 ]
