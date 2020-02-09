@@ -3,6 +3,8 @@ from django.db import models
 
 class Service(models.Model):
     title = models.CharField(max_length=250, verbose_name='Название')
+    title_index = models.CharField(max_length=250, verbose_name='Название для главной страницы')
+    text_index = models.CharField(max_length=250, verbose_name='Описание для главной страницы')
     desc = models.TextField(verbose_name='Описание')
     is_active = models.BooleanField(default=True, verbose_name='Показывать на сайте')
 

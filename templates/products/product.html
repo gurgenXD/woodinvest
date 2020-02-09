@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main">
+    <div class="container pt-4">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'products' %}">Продукция</a></li>
+            <li class="breadcrumb-item active">{{ product.title }}</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div id="Carousel" class="carousel slide pruduct-carousel" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="photo-swipe" itemscope itemtype="http://schema.org/ImageGallery">
+                            {% for val, item in slider_elems %}
+                            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"
+                                    class="carousel-item {% if item == product.get_main_image %}active{% endif %}" data-interval="10000">
+                                <a href="{{ item.image.url }}" itemprop="contentUrl" data-size="6000x4000">
+                                    <img src="{{ item.image_big.url }}" itemprop="thumbnail" alt="...">
+                                </a>
+                            </figure>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <ol class="carousel-indicators flex-wrap">
+                        {% for nmb, item in slider_elems %}
+                        <li data-target="#Carousel" data-slide-to="{{ nmb }}" class="active" style="background-image: url({{ item.image_small.url }})"></li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-5">
+                <div class="product-name">
+                    <p class="h5">{{ product.category }}</p>
+                    <h1>{{ product.title }}</h1>
+
+                    <div class="product-price mb-4">
+                        <span class="number">{{ product.price }}</span><i class="fas fa-ruble-sign fa-sm text-muted ml-2"></i>
+                    </div>
+                </div>
+
+                <p class="text-muted smaller">{{ product.short_desc|striptags }}</p>
+
+                <a href="#" title="" data-toggle="modal" data-target="#Modal" class="btn btn-primary py-3 mt-2">оставить заказ</a>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs justify-content-md-center flex-column flex-md-row product-tabs mb-2 mb-md-0" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link text-uppercase small font-weight-bold pb-md-3 mb-3 mb-md-0 active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Технические характеристики</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-uppercase small font-weight-bold pb-md-3 mb-3 mb-md-0" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Описание</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-uppercase small font-weight-bold pb-md-3 mb-3 mb-md-0" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Дополнительные услуги</a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="bg-light mt-md-n1">
+        <div class="container">
+            <div class="tab-content pt-5 pb-4 product-info">
+                <div class="tab-pane fade show active col-lg-6 mx-auto p-0" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                    {{ product.features|safe }}
+                </div>
+
+                <div class="tab-pane fade col-lg-6 mx-auto p-0" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                    <div class="pb-4">
+                        {{ product.desc|safe }}
+                    </div>
+                </div>
+
+                <div class="tab-pane fade col-lg-6 mx-auto p-0" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                    {{ product.options|safe }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="h4 text-uppercase mb-4">Похожие товары</h2>
+
+            <div class="row mx-lg-n4">
+                {% for item in similar_products %}
+                <div class="col-lg-3 col-sm-6 px-lg-4">
+                    <div class="card mb-4 mb-lg-0">
+                        <img src="{{ item.get_main_image.image_medium.url }}" class="card-img-top" alt="...">
+                        <div class="card-body pb-3">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a href="{{ item.get_absolute_url }}" class="stretched-link smaller font-weight-bold">подробнее<i class="fas fa-long-arrow-alt-right fa-sm ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>       
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include 'modals/__feedback_modal.html' %}
+{% include '__photoswipe.html' %}
+
+{% endblock %}

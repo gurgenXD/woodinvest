@@ -1,0 +1,17 @@
+{% autoescape off %}
+    На сайте http://{{ domain }} новый заказ.
+    
+    Информация о заказе:
+
+    Услуга: {{ service }}
+    Регион: {{ region }}
+    Адрес: {{ address }}
+    Вид сырья и объём: {{ material }}
+    Сроки оказания услуг: {{ deadline }}
+    Контактное лицо: {{ contact }}
+    Телефон: {{ phone }}
+    E-mail: {{ email }}
+    Примечание: {{ note }}
+
+    Ссылка на сайт: http://{{ domain }}
+{% endautoescape %}

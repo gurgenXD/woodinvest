@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main">
+    <div class="container pt-4 pb-5">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item active">Услуги</li>
+        </ol>
+
+        <h1 class="h4 text-uppercase mb-4">Услуги</h1>
+        {% for item in services %}
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>{{ item.title }}</h2>
+                {{ item.desc|safe }}
+            </div>
+
+            <div class="col-lg-6">
+                <div class="bg-light py-4 px-3 px-sm-4 mx-n3 mx-sm-0 mb-n5 mb-sm-0">
+                    <h3 class="h4">Заказать {{ item.title }}</h3>
+
+                    <form class="needs-validation" novalidate method="POST" action="{% url 'order' %}">
+                        {% csrf_token %}
+                        <div class="form-label-group mb-4">
+                            {{ order_form.region }}
+
+                            <div class="invalid-feedback">
+                                Это поле должно быть заполнено
+                            </div>
+                        </div>
+
+                        <div class="form-label-group smaller mb-4">
+                            {{ order_form.address }}
+                            <label>Адрес</label>
+
+                            <div class="invalid-feedback">
+                                Это поле должно быть заполнено
+                            </div>
+                        </div>
+
+                        <div class="form-label-group smaller mb-4">
+                            {{ order_form.material }}
+                            <label>Вид сырья и объём</label>
+
+                            <div class="invalid-feedback">
+                                Это поле должно быть заполнено
+                            </div>
+                        </div>
+
+                        <div class="form-label-group smaller mb-4">
+                            {{ order_form.deadline }}
+                            <label>Сроки оказания услуг</label>
+
+                            <div class="invalid-feedback">
+                                Это поле должно быть заполнено
+                            </div>
+                        </div>
+
+                        <div class="form-label-group smaller mb-4">
+                            {{ order_form.contact }}
+                            <label>Контактное лицо</label>
+
+                            <div class="invalid-feedback">
+                                Это поле должно быть заполнено
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-label-group smaller mb-4">
+                                    {{ order_form.phone }}
+                                    <label>Телефон</label>
+
+                                    <div class="invalid-feedback">
+                                        Это поле должно быть заполнено
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-label-group smaller mb-4">
+                                    {{ order_form.email }}
+                                    <label>E-mail</label>
+
+                                    <div class="invalid-feedback">
+                                        Это поле должно быть заполнено
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-label-group textarea smaller mb-4">
+                            {{ order_form.note }}
+                            <label>Примечание</label>
+
+                            <div class="invalid-feedback">
+                                Это поле должно быть заполнено
+                            </div>
+                        </div>
+
+                        {% include '__recaptcha.html' %}
+
+                        <button id="{{ item.id }}" class="service-btn btn btn-primary" type="submit">оформить заказ</button>
+                    </form>
+
+                    <p class="text-muted small mb-0 mt-4">Нажимая кнопку "оформить заказ", вы даёте согласие на <a href="content.html" target="_blank">обработку персональных данных</a></p>
+
+                    <div class="alert alert-danger d-none alert-dismissible fade small show" role="alert">
+                        <strong>Произошла ошибка! </strong>Обновите страницу и попробуйте ещё раз.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-success d-none justify-content-center align-items-top pt-3">
+                        <div class="text-center">
+                            <i class="far fa-check-circle fa-5x text-success mb-4"></i>
+                            <h3 class="h5 mb-1 mt-0">Спасибо за ваш заказ!</h3>
+                            <p class="text-muted small">Мы получили его, и скоро с вами свяжемся.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock %}

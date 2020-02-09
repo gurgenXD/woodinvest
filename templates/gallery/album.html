@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main">
+    <div class="container pt-4 pb-lg-5 pb-4">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'gallery' %}">Фото</a></li>
+            <li class="breadcrumb-item active">{{ album.title }}</li>
+        </ol>
+
+        <h1 class="h4 text-uppercase mb-4">{{ album.title }}</h1>
+
+        <p class="small text-muted col-lg-6 px-0">{{ album.desc }}</p>
+
+        <div class="photo-swipe img-grid row" itemscope itemtype="http://schema.org/ImageGallery">
+            {% for item in album.images.all %}
+            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="mb-4 col-md-4 col-6">
+                <a href="{{ item.image.url }}" itemprop="contentUrl" data-size="6000x4000">
+                    <img src="{{ item.image_small.url }}" itemprop="thumbnail" alt="...">
+                </a>
+                <figcaption itemprop="caption description" class="d-none">Информация об изображении, если нужно</figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% include '__photoswipe.html' %}
+
+{% endblock %}

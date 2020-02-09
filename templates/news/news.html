@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main">
+    <div class="container pt-4 pb-5">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}>Главная</a></li>
+            <li class="breadcrumb-item active">Новости</li>
+        </ol>
+
+        <h1 class="h4 text-uppercase mb-4">Новости</h1>
+
+        <div class="row">
+            {% for item in news %}
+            <div class="col-lg-3">
+                <div class="news-item px-4 py-5 mb-4 bg-white">
+                    <span class="font-weight-bold text-uppercase d-block mb-5">{{ item.created|date:"j E" }}</span>
+
+                    <a href="{{ item.get_absolute_url }}" title="" class="stretched-link smaller text-dark">{{ item.title }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}

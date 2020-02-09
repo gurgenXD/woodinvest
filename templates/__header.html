@@ -1,0 +1,100 @@
+{% load static %}
+{% load phone %}
+
+<div class="top-bar bg-dark">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="socials d-none d-sm-block">
+                {% for item in socials %}
+                <a href="{{ item.link }}" title="{{ item.name }}" target="_blank" class="mr-2"><i class="fab fa-{{ item.short_name }}"></i></a>
+                {% endfor %}
+            </div>
+            <span class="d-none d-md-inline-block small text-white">{{ main_address }}</span>
+            <a href="tel:+{{ main_phone|only_digits }}" title="" class="d-block small text-white">{{ main_phone }}</a>
+            <div>
+                <a href="#" title="" role="button" data-toggle="modal" data-target="#CallBackModal" class="d-inline-block small py-2 px-3 callback-btn"><i class="fas fa-phone-volume mr-2 d-none d-sm-inline-block"></i>заказать звонок</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container px-sm-3 overflow-hidden">
+        <div class="navbar-brand position-relative">
+            <a href="{% url 'index' %}" title="" class="d-flex align-items-end stretched-link mb-1 logo"><img src="{% static 'images/logo.svg' %}" alt="Wood Invest">Wood Invest</a>
+            <span class="d-block small text-muted">Спецтехника из Германии</span>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="offcanvas">
+            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i><i class="fas fa-times"></i></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="content.html">О компании</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalogue.html">Продукция</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="service.html">Услуги</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Покупателю<i class="fas fa-chevron-down fa-xs ml-2"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="content.html">Оплата</a>
+                        <a class="dropdown-item" href="content.html">Доставка</a>
+                        <a class="dropdown-item" href="content.html">Сервис с гарантии</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="newsfeed.html">Новости</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gallery.html">Фото</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="d-lg-none offcanvas-collapse navbar-expand-lg">
+            <div class="container px-0 px-sm-3">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="content.html">О компании</a>
+                    </li>          
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalogue.html">Продукция</a>
+                    </li>    
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html">Услуги</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Покупателю<i class="fas fa-chevron-down fa-xs ml-2"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="content.html">Оплата</a>
+                            <a class="dropdown-item" href="content.html">Доставка</a>
+                            <a class="dropdown-item" href="content.html">Сервис с гарантии</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="newsfeed.html">Новости</a>
+                    </li>   
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Фото</a>
+                    </li>   
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacts.html">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</nav>

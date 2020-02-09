@@ -1,0 +1,48 @@
+<div class="modal fade" id="CallBackModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content overflow-hidden shadow">
+            <div class="modal-header">
+                <h5 class="modal-title m-0 font-weight-normal smaller">Оставьте номер, и мы перезвоним в ближайшее время</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation" novalidate method="POST" action="{% url 'callback' %}">
+                    {% csrf_token %}
+                    <div class="form-label-group smaller mb-4">
+                        {{ callback_form.phone }}
+                        <label>Телефон</label>
+
+                        <div class="invalid-feedback">
+                            Это поле должно быть заполнено
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary mx-auto d-block w-100" type="submit">заказать звонок</button>
+                </form>
+
+                <div class="alert alert-danger d-none alert-dismissible small fade show" role="alert">
+                    <strong>Произошла ошибка! </strong>Обновите страницу и попробуйте ещё раз.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <p class="text-muted small m-0">Нажимая кнопку "заказать звонок", вы даёте согласие на <a href="content.html" target="_blank">обработку персональных данных</a></p>
+            </div>
+
+            <div class="modal-success d-none justify-content-center align-items-center">
+                <div class="text-center px-5 py-4">
+                    <i class="far fa-check-circle fa-4x text-success mb-4"></i>
+                    <h3 class="h5 mb-2 mt-0">Спасибо за заявку!</h3>
+                    <p class="small">Мы перезвоним Вам в ближайшее время.</p>
+                    <button type="button" class="btn text-muted" data-dismiss="modal" aria-label="Закрыть окно"><i class="fas fa-times fa-xs mr-2"></i>закрыть окно</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

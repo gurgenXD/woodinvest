@@ -1,25 +1,24 @@
 from django.shortcuts import render
 from django.views import View
 from contacts.models import *
-# from callback.forms import CallBackForm
+from feedback.forms import FeedBackForm
 
 
 class ContactsView(View):
-    def get(self):
+    def get(self, request):
         addresses = Address.objects.all()
         phones = Phone.objects.all()
         emails = Email.objects.all()
         map_code = MapCode.objects.first()
-        socials = Social.objects.first()
 
-        # callback_form = CallBackForm()
+        feedback_form = FeedBackForm()
 
         context = {
             'addresses': addresses,
             'phones': phones,
             'emails': emails,
             'map_code': map_code,
-            'socials': socials,
-            # 'callback_form': callback_form,
+            'feedback_form': feedback_form,
         }
-        return render(self.request, 'contacts/contacts.html', context)
+        
+        return render(request, 'contacts/contacts.html', context)

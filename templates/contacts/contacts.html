@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load phone %}
+
+
+{% block content %}
+<main role="main">
+    <div class="container pt-4 pb-5">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item active">Контакты</li>
+        </ol>
+
+        <h1 class="h4 text-uppercase mb-4">Контакты</h1>
+
+        <div class="row">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <address>
+                    <div class="mb-4">
+                        <span class="d-block text-muted small font-weight-bold mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Телефон</span>
+                        {% for item in phones %}
+                        <a href="tel:+{{ item|only_digits }}" title="" class="d-block text-dark mb-2">{{ item.value }}</a>
+                        {% endfor %}
+                    </div>     
+
+                    <div class="mb-4">
+                        <span class="d-block text-muted small font-weight-bold mb-2"><i class="fas fa-envelope mr-2"></i>E-mail</span>
+                        {% for item in emails %}
+                        <a href="mailto:{{ item.value }}" title="" class="d-block text-dark mb-2">{{ item.value }}</a>
+                        {% endfor %}
+                    </div>      
+
+                    <div class="mb-4">
+                        <span class="d-block text-muted small font-weight-bold mb-2"><i class="fas fa-phone-alt mr-2"></i>Адрес</span>
+                        {% for item in addresses %}
+                        <p class="mb-3">{{ item.value }}</p>
+                        {% endfor %}
+                    </div>
+                </address>
+
+                <a href="#" title="" data-toggle="modal" data-target="#Modal" class="btn btn-primary d-inline-flex align-items-center"><i class="far fa-envelope mr-3"></i>напишите нам</a>
+            </div>
+
+            <div class="col-lg-8">
+                {{ map_code.value|safe }}
+            </div>
+        </div>
+    </div>
+</main>
+
+{% include 'modals/__feedback_modal.html' %}
+
+{% endblock %}

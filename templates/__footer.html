@@ -1,0 +1,43 @@
+{% load static %}
+
+<footer class="footer py-5 bg-light">
+    <div class="container">
+        <div class="row mb-4 mb-lg-5">
+            <div class="col-lg-4">
+                <a href="{% url 'index' %}" title="" class="d-flex align-items-end stretched-link mb-1 logo"><img src="{% static 'images/logo.svg' %}" alt="Wood Invest">Wood Invest</a>
+                <p class="small text-muted mb-3">© все права защищены</p>
+                <div class="socials">
+                    {% for item in socials %}
+                    <a href="{{ item.link }}" title="{{ item.name }}" target="_blank" class="mr-2"><i class="fab fa-{{ item.short_name }}"></i></a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <a href="content.html" title="" class="d-block small text-dark mb-1">О компании</a>
+                <a href="catalogue.html" title="" class="d-block small text-dark mb-1">Продукция</a>
+                <a href="newsfeed.html" title="" class="d-block small text-dark mb-1">Новости</a>
+                <a href="gallery.html" title="" class="d-block small text-dark mb-1">Фото</a>
+            </div>
+
+            <div class="col-lg-4  col-md-6">
+                <a href="contacts.html" title="" class="d-block small text-dark mb-1">Контакты</a>
+                <a href="content.html" title="" class="d-block small text-dark mb-1">Оплата</a>
+                <a href="content.html" title="" class="d-block small text-dark mb-1">Доставка</a>
+                <a href="content.html" title="" class="d-block small text-dark mb-1">Сервис и гарантии</a>
+            </div>
+        </div>
+
+        <div class="text-lg-center border-top pt-4 pt-lg-5">
+            <div class="d-inline-block">
+                <div class="position-relative d-flex align-items-center devlogo">
+                    <img src="{% static 'images/devlogo.svg' %}" alt="Webline Masters">
+                    <div class="ml-2 d-flex align-items-start flex-column">
+                        <span>Webline Masters</span>
+                        <a href="http://wlms.info" target="_blank" class="stretched-link text-muted" title="Webline Masters">создание и продвижение сайтов</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

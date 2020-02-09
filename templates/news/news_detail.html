@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main">
+    <div class="container pt-4 pb-5">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'news' %}">Новости</a></li>
+            <li class="breadcrumb-item active">{{ news_item.title }}</li>
+        </ol>
+        <article>
+            <p class="narrow mb-3">
+                <span class="d-inline-block font-weight-bold text-uppercase text-muted small px-3 py-1 bg-light">{{ news_item.created|date:"j E" }}</span>
+            </p>
+            <h1 class="mt-0">{{ news_item.title }}</h1>
+
+            {{ news_item.text|safe }}
+        </article>
+
+    </div>
+</main>
+
+{% include '__photoswipe.html' %}
+
+{% endblock %}

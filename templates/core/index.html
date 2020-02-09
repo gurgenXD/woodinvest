@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load phone %}
+
+{% block content %}
+<main role="main">
+    <div id="Carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#Carousel" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+            {% for item in index.slides.all %}
+            <div class="carousel-item {% if item == first_slide %}active{% endif %}" data-interval="10000" style="background-image: url({{ item.image.url }})">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="w-lg-50">
+                            <h2 class="clearfix">{{ item.title }}</h2>
+                            <p class="font-weight-bold clearfix">{{ item.desc }}</p>
+
+                            <a href="{% url 'products' %}" title="" class="btn btn-primary">каталог</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <section class="pt-4 pt-lg-5">
+        <div class="container py-4 py-lg-5">
+            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-start align-items-md-center mb-4 mb-lg-5">
+                <h2 class="h4 text-uppercase mb-2 mb-md-0">Продукция</h2>
+                <a href="{% url 'products' %}" class="smaller font-weight-bold">вся продукция<i class="fas fa-angle-right fa-sm ml-2"></i></a>
+            </div>
+
+            <div class="row mx-n4">
+                {% for item in products %}
+                <div class="col-lg-4 col-sm-6 px-4">
+                    <div class="card mb-5">
+                        <img src="{{ item.get_main_image.image_medium.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ item.title }}</h4>
+                            <p class="card-text small text-muted">{{ item.short_desc|striptags|truncatechars:200 }}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a href="{{ item.get_absolute_url }}" class="stretched-link smaller font-weight-bold">подробнее<i class="fas fa-long-arrow-alt-right fa-sm ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>       
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="main-chipping d-flex justify-content-center align-items-center" style="background-image: url({% static 'data-images/main-chipping-bg.jpg' %})">
+            <div class="container">
+                <div class="p-2 p-md-5 text-center">
+                    <h4 class="text-uppercase mb-2 mb-md-3">{{ index.service.title_index }}</h4>
+                    <p class="lead text-lowercase mb-4 mb-md-5">{{ index.service.text_index }}</p>
+                    <a href="{{ index.service.get_absolute_url }}" title="" data-toggle="modal" data-target="#ServiceModal" class="btn btn-primary">заказать услугу</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light py-4 py-lg-5">
+        <div class="container py-4 py-lg-5">
+
+            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-start align-items-md-center mb-4 mb-lg-5">
+                <h2 class="h4 text-uppercase mb-2 mb-md-0">Новости</h2>
+                <a href="{% url 'news' %}" class="smaller font-weight-bold">все новости<i class="fas fa-angle-right fa-sm ml-2"></i></a>
+            </div>
+
+            <div class="row">
+                {% for item in news %}
+                <div class="col-lg-3">
+                    <div class="news-item px-4 py-5 bg-white mb-4 mb-lg-0">
+                        <span class="font-weight-bold text-uppercase d-block mb-5">{{ item.created|date:"j E" }}</span>
+
+                        <a href="{{ item.get_absolute_url }}" title="" class="stretched-link smaller text-dark">{{ item.title }}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="py-4 py-lg-5">
+        <div class="container py-4 py-lg-5">
+            <div class="row">
+                <div class="col-xl-7 col-lg-6 pr-lg-5 mb-4 mb-lg-0">
+                    <h1 class="h4 text-muted">Компания Wood Invest</h1>
+
+                    {{ index.about|safe }}
+                </div>
+
+                <div class="col-xl-5 col-lg-6">
+                    <ul class="nav nav-tabs justify-content-center justify-content-lg-start" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link text-uppercase smaller font-weight-bold active" id="features-tab" data-toggle="tab" href="#features" role="tab" aria-controls="features" aria-selected="true">Факты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-uppercase smaller font-weight-bold" id="partners-tab" data-toggle="tab" href="#partners" role="tab" aria-controls="partners" aria-selected="false">Партнёры</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-4 pl-lg-4">
+                        <div class="tab-pane fade show active" id="features" role="tabpanel" aria-labelledby="features-tab">
+                            <div class="row no-gutters">
+                                {% for item in index.facts.all %}
+                                <div class="col-md-6">
+                                    <div class="feature border text-center p-4">
+                                        <h4 class="text-primary">{{ item.top }}</h4>
+                                        <span class="d-block text-uppercase smaller mb-3">{{ item.center }}</span>
+                                        <p class="small text-muted m-0">{{ item.bottom }}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="partners" role="tabpanel" aria-labelledby="partners-tab">
+                            <div class="row no-gutters">
+                                {% for item in index.partners.all %}
+                                <div class="col-md-6">
+                                    <div class="partner border text-center">
+                                        <a href="{{ item.url }}" title="" target="_blank" class="d-block p-4">
+                                            <img src="{{ item.image.url }}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="border-top">
+        <div class="container">
+            <div class="row no-gutters mx-lg-n5 pb-3 pb-lg-0">
+                {% for item in index.goals.all %}
+                <div class="col-lg-3">
+                    <div class="line-feature p-lg-5 py-4">
+                        <img src="{{ item.image.url }}" alt="" class="mb-4">
+                        <h4 class="text-uppercase mb-2">{{ item.title }}</h4>
+                        <p class="text-muted small m-0">{{ item.text }}</p>
+                    </div>
+                </div>    
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light py-4 py-lg-5">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-start align-items-md-center mb-4 mb-lg-5">
+                <h2 class="h4 text-uppercase mb-4 mb-md-0">Контакты</h2>
+                <a href="#" title="" data-toggle="modal" data-target="#Modal" class="btn btn-primary d-flex align-items-center"><i class="far fa-envelope mr-3"></i>напишите нам</a>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <address>
+                        <div class="mb-4">
+                            <span class="d-block text-muted small font-weight-bold mb-2"><i class="fas fa-map-marker-alt mr-2"></i>Телефон</span>
+                            {% for item in phones %}
+                            <a href="tel:+{{ item|only_digits }}" title="" class="d-block text-dark mb-2">{{ item.value }}</a>
+                            {% endfor %}
+                        </div>     
+
+                        <div class="mb-4">
+                            <span class="d-block text-muted small font-weight-bold mb-2"><i class="fas fa-envelope mr-2"></i>E-mail</span>
+                            {% for item in emails %}
+                            <a href="mailto:{{ item.value }}" title="" class="d-block text-dark mb-2">{{ item.value }}</a>
+                            {% endfor %}
+                        </div>      
+
+                        <div class="mb-4">
+                            <span class="d-block text-muted small font-weight-bold mb-2"><i class="fas fa-phone-alt mr-2"></i>Адрес</span>
+                            {% for item in addresses %}
+                            <p class="mb-3">{{ item.value }}</p>
+                            {% endfor %}
+                        </div>
+                    </address>
+                </div>
+
+                <div class="col-lg-8">
+                    {{ map_code.value|safe }}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include 'modals/__feedback_modal.html' %}
+{% include 'modals/__service_modal.html' %}
+
+{% endblock %}

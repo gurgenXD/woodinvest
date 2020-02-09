@@ -55,7 +55,7 @@ class Image(models.Model):
                                options={'quality': 90})
 
     image_medium = ImageSpecField(source='image',
-                               processors=[ResizeToFill(502, 333)],
+                               processors=[ResizeToFill(530, 350)],
                                format='JPEG',
                                options={'quality': 90})
     

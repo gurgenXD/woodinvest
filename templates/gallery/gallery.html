@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main">
+    <div class="container pt-4 pb-5">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item active">Фото</li>
+        </ol>
+
+        <h1 class="h4 text-uppercase mb-4">Фото</h1>
+
+        <div class="row mx-n4">
+            {% for item in gallery %}
+            <div class="col-lg-4 col-sm-6 px-4">
+                <div class="position-relative mb-5 gallery-item">
+                    <img src="{{ item.image_small.url }}" class="card-img-top" alt="...">
+                    <a href="{{ item.get_absolute_url }}" title="" class="d-block stretched-link text-dark font-weight-bold pt-2">{{ item.title }}</a>
+                </div>
+            </div>
+            {% endfor %}  
+        </div>
+    </div>
+</main>
+{% endblock %}
