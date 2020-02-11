@@ -39,3 +39,11 @@ class IndexView(View):
         }
 
         return render(request, 'core/index.html', context)
+
+
+class ContentPagesView(View):
+    def get(self, request):
+        context = {
+        }
+
+        return render(request, 'core/content_page.html', context)

@@ -1,7 +1,21 @@
+{% load flatpages %}
+{% get_flatpages as flatpages %}
+
 <!doctype html>
 <html lang="ru">
     <head>
         {% include '__head.html' %}
+
+        {% for item in seo_titles %}
+            {% if request.path == item.url  %}
+                <title>{{ item.seo_title }}</title>
+                <meta name="description" content="{{ item.seo_desc }}">
+                <meta name="keywords" content="{{ item.seo_kwrds }}">
+            {% endif %}
+        {% endfor %}
+
+        {% block title %}
+        {% endblock %}
     </head>
     <body>
 

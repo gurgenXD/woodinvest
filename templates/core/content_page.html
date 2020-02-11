@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main">
+    <div class="container pt-4 pb-5">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item active">Покупателю</li>
+        </ol>
+
+        <h1 class="h4 text-uppercase mb-4">Покупателю</h1>
+
+        {% for item in flatpages %}
+            {% if item.url != '/about/' and item.url != '/personal-data/' %}
+            <a href="{{ item.url }}" title="" class="d-block mb-2 dropdown-menu-link">{{ item.title }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

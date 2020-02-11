@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main role="main">
+    <div class="container pt-4 pb-5">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'content_pages' %}">Покупателю</a></li>
+            <li class="breadcrumb-item active">Доставка</li>
+        </ol>
+        <article>
+            <h1 class="mt-0">{{ flatpage.title }}</h1>
+
+            {{ flatpage.content|safe }}
+        </article>
+
+    </div>
+</main>
+
+{% include '__photoswipe.html' %}
+
+{% endblock %}

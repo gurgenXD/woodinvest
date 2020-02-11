@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    <title>{{ news_item.seo_title }}</title>
+    <meta name="description" content="{{ news_item.seo_desc }}">
+    <meta name="keywords" content="{{ news_item.seo_kwrds }}"> 
+{% endblock %}
+
 {% block content %}
 <main role="main">
     <div class="container pt-4 pb-5">

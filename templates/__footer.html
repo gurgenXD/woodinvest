@@ -14,17 +14,19 @@
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <a href="content.html" title="" class="d-block small text-dark mb-1">О компании</a>
-                <a href="catalogue.html" title="" class="d-block small text-dark mb-1">Продукция</a>
-                <a href="newsfeed.html" title="" class="d-block small text-dark mb-1">Новости</a>
-                <a href="gallery.html" title="" class="d-block small text-dark mb-1">Фото</a>
+                <a href="/about/" title="" class="d-block small text-dark mb-1">О компании</a>
+                <a href="{% url 'products' %}" title="" class="d-block small text-dark mb-1">Продукция</a>
+                <a href="{% url 'news' %}" title="" class="d-block small text-dark mb-1">Новости</a>
+                <a href="{% url 'gallery' %}" title="" class="d-block small text-dark mb-1">Фото</a>
             </div>
 
             <div class="col-lg-4  col-md-6">
-                <a href="contacts.html" title="" class="d-block small text-dark mb-1">Контакты</a>
-                <a href="content.html" title="" class="d-block small text-dark mb-1">Оплата</a>
-                <a href="content.html" title="" class="d-block small text-dark mb-1">Доставка</a>
-                <a href="content.html" title="" class="d-block small text-dark mb-1">Сервис и гарантии</a>
+                <a href="{% url 'contacts' %}" title="" class="d-block small text-dark mb-1">Контакты</a>
+                {% for item in flatpages %}
+                    {% if item.url != '/about/' and item.url != '/personal-data/' %}
+                    <a href="{{ item.url }}" title="" class="d-block small text-dark mb-1">{{ item.title }}</a>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
 

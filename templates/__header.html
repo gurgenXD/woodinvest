@@ -31,32 +31,34 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="content.html">О компании</a>
+                    <a class="nav-link" href="/about/">О компании</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="catalogue.html">Продукция</a>
+                    <a class="nav-link" href="{% url 'products' %}">Продукция</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="service.html">Услуги</a>
+                    <a class="nav-link" href="{% url 'services' %}">Услуги</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Покупателю<i class="fas fa-chevron-down fa-xs ml-2"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="content.html">Оплата</a>
-                        <a class="dropdown-item" href="content.html">Доставка</a>
-                        <a class="dropdown-item" href="content.html">Сервис с гарантии</a>
+                        {% for item in flatpages %}
+                            {% if item.url != '/about/' and item.url != '/personal-data/' %}
+                            <a class="dropdown-item" href="{{ item.url }}">{{ item.title }}</a>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="newsfeed.html">Новости</a>
+                    <a class="nav-link" href="{% url 'news' %}">Новости</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="gallery.html">Фото</a>
+                    <a class="nav-link" href="{% url 'gallery' %}">Фото</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contacts.html">Контакты</a>
+                    <a class="nav-link" href="{% url 'contacts' %}">Контакты</a>
                 </li>
             </ul>
         </div>
@@ -65,32 +67,34 @@
             <div class="container px-0 px-sm-3">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="content.html">О компании</a>
+                        <a class="nav-link" href="/about/">О компании</a>
                     </li>          
                     <li class="nav-item">
-                        <a class="nav-link" href="catalogue.html">Продукция</a>
+                        <a class="nav-link" href="{% url 'products' %}">Продукция</a>
                     </li>    
                     <li class="nav-item">
-                        <a class="nav-link" href="service.html">Услуги</a>
+                        <a class="nav-link" href="{% url 'services' %}">Услуги</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Покупателю<i class="fas fa-chevron-down fa-xs ml-2"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="content.html">Оплата</a>
-                            <a class="dropdown-item" href="content.html">Доставка</a>
-                            <a class="dropdown-item" href="content.html">Сервис с гарантии</a>
+                            {% for item in flatpages %}
+                                {% if item.url != '/about/' and item.url != '/personal-data/' %}
+                                <a class="dropdown-item" href="{{ item.url }}">{{ item.title }}</a>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="newsfeed.html">Новости</a>
+                        <a class="nav-link" href="{% url 'news' %}">Новости</a>
                     </li>   
                     <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">Фото</a>
+                        <a class="nav-link" href="{% url 'gallery' %}">Фото</a>
                     </li>   
                     <li class="nav-item">
-                        <a class="nav-link" href="contacts.html">Контакты</a>
+                        <a class="nav-link" href="{% url 'contacts' %}">Контакты</a>
                     </li>
                 </ul>
             </div>
