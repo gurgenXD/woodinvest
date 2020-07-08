@@ -9,8 +9,8 @@ def context_info(request):
 
     index = Index.objects.first()
 
-    main_phone = index.phone
-    main_address = index.address
+    main_phone = index.phone if index else None
+    main_address = index.address if index else None
 
     seo_titles = TitleTag.objects.all()
 

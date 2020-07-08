@@ -62,9 +62,11 @@
             <li class="nav-item">
                 <a class="nav-link text-uppercase small font-weight-bold pb-md-3 mb-3 mb-md-0" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Описание</a>
             </li>
+            {% if product.options %}
             <li class="nav-item">
                 <a class="nav-link text-uppercase small font-weight-bold pb-md-3 mb-3 mb-md-0" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Дополнительные услуги</a>
             </li>
+            {% endif %}
         </ul>
     </div>
 
@@ -80,10 +82,11 @@
                         {{ product.desc|safe }}
                     </div>
                 </div>
-
+                {% if product.options %}
                 <div class="tab-pane fade col-lg-6 mx-auto p-0" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
                     {{ product.options|safe }}
                 </div>
+                {% endif %}
             </div>
         </div>
     </section>

@@ -13,7 +13,7 @@ class Product(SEO):
     desc = models.TextField(verbose_name='Описание')
     short_desc = models.TextField(verbose_name='Краткое описание')
     features = models.TextField(verbose_name='Характеристики')
-    options = models.TextField(verbose_name='Доп. услуги')
+    options = models.TextField(verbose_name='Доп. услуги', null=True, blank=True)
     is_active = models.BooleanField(default=True, verbose_name='Показывать на сайте')
     created = models.DateField(auto_now_add=True, verbose_name='Дата создания')
     updated = models.DateField(auto_now=True, verbose_name='Дата изменения')

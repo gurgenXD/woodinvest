@@ -25,7 +25,9 @@ SECRET_KEY = 'fd-ww!3=k&n_y@yd3+*r@b2hu^l=+jdb%a^h((+__9t)*d!rw@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'woodinvest-site.wlms.info',
+]
 
 
 # Application definition

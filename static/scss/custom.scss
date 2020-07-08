@@ -1,0 +1,844 @@
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('../fonts/BebasNeueRegular.eot');
+    src: url('../fonts/BebasNeueRegular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/BebasNeueRegular.woff') format('woff'),
+        url('../fonts/BebasNeueRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helios';
+    src: local('../fonts/Helios Light'), local('Helios-Light'),
+        url('../fonts/HeliosLightC.woff2') format('woff2'),
+        url('../fonts/HeliosLightC.woff') format('woff'),
+        url('../fonts/HeliosLightC.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helios';
+    src: local('../fonts/Helios Light Italic'), local('Helios-Light-Italic'),
+        url('../fonts/HeliosLightC-Italic.woff2') format('woff2'),
+        url('../fonts/HeliosLightC-Italic.woff') format('woff'),
+        url('../fonts/HeliosLightC-Italic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helios';
+    src: local('../fonts/Helios Regular'), local('Helios-Regular'),
+        url('../fonts/HeliosC.woff2') format('woff2'),
+        url('../fonts/HeliosC.woff') format('woff'),
+        url('../fonts/HeliosC.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helios';
+    src: local('../fonts/Helios Italic'), local('Helios-Italic'),
+        url('../fonts/../fonts/HeliosC-Italic.woff2') format('woff2'),
+        url('../fonts/HeliosC-Italic.woff') format('woff'),
+        url('../fonts/HeliosC-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helios';
+    src: local('../fonts/Helios Bold'), local('Helios-Bold'),
+        url('../fonts/HeliosC-Bold.woff2') format('woff2'),
+        url('../fonts/HeliosC-Bold.woff') format('woff'),
+        url('../fonts/HeliosC-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helios';
+    src: local('../fonts/Helios Bold Italic'), local('Helios-Bold-Italic'),
+        url('../fonts/HeliosC-BoldItalic.woff2') format('woff2'),
+        url('../fonts/HeliosC-BoldItalic.woff') format('woff'),
+        url('../fonts/HeliosC-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Helios Cond Black';
+    src: local('../fonts/Helios Condensed Black'), local('Helios-Condensed-Black'),
+        url('../fonts/HeliosCondBlackC.woff2') format('woff2'),
+        url('../fonts/HeliosCondBlackC.woff') format('woff'),
+        url('../fonts/HeliosCondBlackC.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+
+    &.fixed-bar {
+        padding-top: 122px;
+    }
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    a {
+        &.small {
+            &:hover {
+                color: $primary !important;
+            }
+        }
+    }
+}
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus {
+    outline: none !important;
+}
+
+.devlogo {
+    img {
+        width: 44px;
+        height: 44px;
+    }
+
+    span {
+        font-family: 'Bebas Neue';
+        font-size: 1.9rem;
+        line-height: 1em;
+    }
+
+    a {
+        font-size: .6875rem;
+        line-height: 1em;
+
+        &:hover {
+            color: $primary !important;
+        }
+    }
+}
+
+.scroll-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: none;
+    z-index: 1;
+    padding-top: .75rem;
+
+    &:hover {
+        cursor: pointer;
+
+        svg {
+            path {
+                fill: $primary;
+            }
+        }
+    }
+}
+
+article {
+    line-height: 1.75rem;
+
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6,
+    p, ol, ul, blockquote, .narrow {
+        max-width: 690px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    ol,
+    ul {
+        margin-bottom: 1.75rem;
+        padding-left: 1.75rem;
+
+        li {
+            margin-bottom: 0.6875rem;
+        }
+    }
+
+    ol ol,
+    ul ul,
+    ol ul,
+    ul ol {
+        margin-top: 0.6875rem;
+    }
+}
+
+.photo-swipe {
+    figure {
+        //        display: inline-block;
+        a {
+            position: relative;
+            display: block;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.offcanvas-collapse {
+    position: fixed;
+    z-index: 999;
+    top: 121px; /* Height of navbar */
+    left: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    padding: 0 1rem;
+    overflow-y: auto;
+    background-color: #fff;
+    transition-timing-function: ease-in-out;
+    transition-duration: .2s;
+    transition-property: left;
+
+    .nav-item {
+        .nav-link {
+            word-wrap: break-word;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+
+            &:after {
+                display: none;
+            }
+        }
+
+        &.active {
+            .nav-link {
+                color: $primary;   
+            }
+        }
+    }
+
+    .dropdown-menu {
+        box-shadow: none;
+        padding: 0;
+
+        .dropdown-item {
+            padding: .35rem 0 .35rem 1rem;
+            word-wrap: break-word;
+            white-space: normal;
+            color: $gray-700;
+
+            &.active {
+                background-color: transparent;
+                color: $primary;
+            }
+        }
+    }
+}
+
+.offcanvas-collapse.open {
+    left: 0;
+}
+
+.navbar {
+    &.fixed-bar {
+        position: fixed;
+        z-index: 9999;
+        top: 35px;
+        left: 0;
+        right: 0;
+    }
+}
+
+.navbar-toggler-icon {
+    font-size: 1.2rem;
+    .fa-times {
+        display: none;
+    }
+
+    &.open {
+        .fa-bars {
+            display: none;
+        }
+
+        .fa-times {
+            display: inherit;
+        }
+    }
+}
+
+.navbar-nav {
+    .nav-item {
+        &:last-of-type {
+            .nav-link {
+                padding-right: 0;
+
+                &:after {
+                    right: 0;
+                }
+            }
+        }
+    }
+}
+
+.smaller {
+    font-size: .9rem;
+}
+
+.top-bar {
+    &.fixed-bar {
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .socials {
+        a {
+            color: lighten($primary, 10%); 
+        }
+    }
+}
+
+.callback-btn {
+    background-color: $primary;
+    color: $white;
+
+    &:hover, :focus {
+        background-color: darken($primary, 5%);
+        color: $white;
+    }
+}
+
+.carousel-caption {
+    h2 {
+        display: inline;
+        background-color: $light;
+        position: relative;
+        font-size: 2rem;
+        line-height: 1.3;
+        padding-top: .3rem;
+        padding-bottom: .3rem;
+        box-shadow: 0.75rem 0 0 $light, -1rem 0 0 $light;
+        text-transform: uppercase;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -2rem;
+            width: 7rem;
+            height: .5rem;
+            background-color: $dark;
+        }
+    }
+
+    p {
+        display: inline;
+        background-color: $light;
+        line-height: 1.3;
+        padding-top: .3rem;
+        padding-bottom: .3rem;
+        box-shadow: 0.75rem 0 0 $light, -1rem 0 0 $light;
+    }
+
+    .btn {
+        margin-top: 1.5rem;
+    }
+}
+
+.main-chipping {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 30rem;
+
+    h4 {
+        position: relative;
+        font-size: 2rem;
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 4rem;
+            height: .25rem;
+            background-color: $primary;
+            top: -2rem;
+            left: 50%;
+            margin-left: -2rem;
+        }
+    }
+}
+
+.news-item {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+    transition: transform .15s ease-out, box-shadow .15s ease-out;
+
+    span {
+        color: $gray-500;
+        font-size: .625rem;
+    }
+
+    &:hover {
+        transform: translateY(-.5rem);
+        box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.1);
+
+        a {
+            color: $primary !important;
+            transition: color .2s ease-out;
+        }
+    }
+}
+
+.feature {
+    margin-bottom: -1px;
+    margin-right: -1px;
+
+    h4 {
+        font-size: 5rem;
+        line-height: 4.75rem;
+        margin: 0;
+    }
+
+    span {
+        font-family: "Helios Cond Black";
+    }
+}
+
+.partner {
+    margin-bottom: -1px;
+    margin-right: -1px;
+    text-align: center;
+
+    img {
+        max-height: 70px;
+        max-width: 150px;
+    }
+
+    &:hover {
+        background-color: $light;
+        transition: background-color .2s ease-out;
+    }
+}
+
+section {
+    &.border-top {
+        .row {
+            > div {
+                border-right: 1px solid $gray-200;
+                &:last-of-type {
+                    border-right: none;
+                }
+            }
+        }
+
+        .line-feature {
+            img {
+                width: 38px;
+                height: 38px;
+            }
+
+            h4 {
+                font-family: "Helios";
+                font-size: .9rem;
+            }
+        }
+    }
+}
+
+.modal-body {
+    .btn {
+        padding: .75rem 1.5rem;
+        font-size: .9rem;
+    }
+}
+
+.modal-success {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+
+    h3 {
+        font-family: "Helios";
+    }
+
+    .btn {
+        font-size: .8rem;
+        font-weight: normal;
+    }
+}
+
+.form-label-group {
+    position: relative;
+
+    .form-control {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        background-color: transparent;
+    }
+}
+
+.form-label-group > textarea,
+.form-label-group > input {
+    padding: .5rem .2rem 0 .2rem;
+}
+
+.form-label-group > select {
+    padding: .4rem 0 0 0;
+}
+
+.form-label-group {
+    &.textarea {
+        > label {
+            top: .6rem;
+        }
+    }
+}
+
+.form-label-group > label {
+    position: absolute;
+    top: .65rem;
+    left: .2rem;
+    display: block;
+    width: 100%;
+    margin-bottom: 0; /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: $gray-600;
+    pointer-events: none;
+    cursor: text; /* Match the input under the label */
+    border: 1px solid transparent;
+    transition: all .1s ease-in-out;
+}
+
+.form-label-group textarea::-webkit-input-placeholder,
+.form-label-group input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.form-label-group textarea:-ms-input-placeholder,
+.form-label-group input:-ms-input-placeholder {
+    color: transparent;
+}
+
+.form-label-group textarea::-ms-input-placeholder,
+.form-label-group input::-ms-input-placeholder {
+    color: transparent;
+}
+
+.form-label-group textarea::-moz-placeholder,
+.form-label-group input::-moz-placeholder {
+    color: transparent;
+}
+
+.form-label-group textarea::placeholder,
+.form-label-group input::placeholder {
+    color: transparent;
+}
+
+.form-label-group textarea:not(:placeholder-shown),
+.form-label-group input:not(:placeholder-shown) {
+}
+
+.form-label-group textarea:not(:placeholder-shown) ~ label,
+.form-label-group input:not(:placeholder-shown) ~ label {
+    top: -.75rem;
+    font-size: 12px;
+    color: $gray-600;
+}
+
+/* Fallback for Edge
+-------------------------------------------------- */
+@supports (-ms-ime-align: auto) {
+    .form-label-group > label {
+        display: none;
+    }
+    .form-label-group textarea::-ms-input-placeholder,
+    .form-label-group input::-ms-input-placeholder {
+        color: $gray-600;
+    }
+}
+
+/* Fallback for IE
+-------------------------------------------------- */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .form-label-group > label {
+        display: none;
+    }
+    .form-label-group textarea:-ms-input-placeholder,
+    .form-label-group input:-ms-input-placeholder {
+        color: $gray-600;
+    }
+}
+
+.dropdown-menu-link {
+    color: $dark;
+
+    &:hover {
+        color: $primary !important;
+    }
+}
+
+.gallery-item {
+    &:hover {
+        a {
+            transition: color .1s ease-out;
+            color: $primary !important;
+        }
+    }
+}
+
+.pruduct-carousel {
+
+    figure {
+        margin-bottom: .5rem !important;
+
+        &:hover {
+            img {
+                filter: none !important;
+                opacity: .9;
+                transition: opacity .1s ease-out;
+            }
+        }
+    }
+
+    .carousel-indicators {
+        position: relative;
+        bottom: 0;
+        justify-content: start;
+        padding: 0;
+        margin-right: -.25rem;
+        margin-left: -.25rem;
+        margin-bottom: 3rem;
+
+        li {
+            width: 83.2px;
+            height: 83px;
+            margin-right: .25rem;
+            margin-left: .25rem;
+            margin-bottom: .5rem;
+            border-top: none;
+            border-bottom: none;
+            opacity: 1;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            transition-duration: .1s;
+
+            &:hover {
+                opacity: .9;
+            }
+        }
+    }
+}
+
+.product-name {
+    position: relative;
+    padding-top: 2.5rem;
+    margin-top: 2rem;
+
+    p {
+        font-family: "Helios";
+        margin-bottom: .5rem;
+    }
+
+    h1 {
+        text-transform: uppercase;
+        font-size: 4rem;
+        margin-bottom: 0;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 7rem;
+        height: .5rem;
+        background-color: $dark;
+    }
+}
+
+.product-price {
+    span {
+        font-size: 2rem;
+        font-family: "Helios Cond Black";
+        color: $primary;
+    }
+}
+
+.product-info {
+    .tab-pane {
+        p {
+            &:last-of-type {
+                margin-bottom: 0 !important;
+            }
+        }   
+    }
+}
+
+.logo {
+    font-size: 1.75rem;
+    line-height: 1.5rem;
+    color: $gray-800 !important;
+    font-family: 'Helios Cond Black';
+
+    img {
+        height: 2rem;
+        margin-right: .75rem;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .w-lg-50 {
+        width: 50%;
+    }
+
+    .hide-last {
+        > div:last-of-type {
+            display: none;
+        }
+    }
+
+    .photo-swipe {
+        figure {
+            a {
+                img {
+                    transition: filter .1s ease-in;
+                }
+
+                &:hover {
+                    cursor: zoom-in;
+
+                    img {
+                        filter: grayscale(100%);
+                    }
+                }
+            }
+        }
+    }
+
+    .carousel-caption {
+        h2 {
+            font-size: 3.5rem;
+
+            &:before {
+                top: -2rem;
+            }
+        }
+
+        .btn {
+            margin-top: 1.5rem;
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .scroll-to-top {
+        display: none !important;
+    }
+
+    section {
+        &.border-top {
+            border: none !important;
+
+            .row {
+                > div {
+                    border-right: none !important;
+                    border-top: 1px solid $gray-200;
+
+                    &:first-of-type {
+                        border: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .product-name {
+        margin-top: 0;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+
+    h1,.h1 {
+        font-size: $font-size-base * 1.802;
+    }
+
+    h2,.h2 {
+        font-size: $font-size-base * 1.602;
+    }   
+
+    h3,.h3 {
+        font-size: $font-size-base * 1.424;
+    }   
+
+    h4,.h4 {
+        font-size: $font-size-base * 1.266;
+    }   
+
+    h5,.h5 {
+        font-size: $font-size-base * 1.125;
+    }
+
+    .product-tabs {
+        .nav-link {
+            padding: 0;
+
+            &:after {
+                display: none;
+            }
+
+            &.active {
+                color: $primary;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(xs) {
+
+    .main-chipping {
+        h4 {
+            position: relative;
+            font-size: 1.5rem;
+        }
+
+        .lead {
+            font-weight: normal;
+            font-size: 1rem;
+        }
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .g-recaptcha {
+        transform: scale(.90) translateX(-6%);
+    }
+}
